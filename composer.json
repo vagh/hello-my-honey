@@ -1,0 +1,6 @@
+{
+    "require": {
+        "alibabacloud/client": "^1.5",
+        "guzzlehttp/guzzle": "~6.0"
+    }
+}
