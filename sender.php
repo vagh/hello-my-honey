@@ -59,8 +59,8 @@ try {
         ->options([
             'query' => [
                 'RegionId' => "cn-hangzhou",
-                // 以下短信模板请自己申请
-                'PhoneNumbers' => "17627828449",
+                // 填写你女朋友的手机号码[多个请用,分割(臭不要脸)]
+                'PhoneNumbers' => "********",
                 // 签名也需要申请
                 'SignName' => "余大能耐",
                 'TemplateCode' => "SMS_176539584",
