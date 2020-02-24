@@ -6,11 +6,14 @@ use AlibabaCloud\Client\Exception\ClientException;
 use AlibabaCloud\Client\Exception\ServerException;
 use GuzzleHttp\Client;
 
+// 初始化阿里云 SDK 实例
+// 参数分别是你阿里云的 accessKeyId 和 accessKeySecret
 AlibabaCloud::accessKeyClient('**********', '**********')
             ->regionId('cn-hangzhou')
             ->asDefaultClient();
 
 try {
+    // 你对小可爱的昵称 有多少就列多少
 	$name_arr = [
 		'小彭彭',
 		'小傻瓜',
@@ -25,6 +28,7 @@ try {
         '搞黄彭',
 	];
 
+	// 随机取一个昵称
 	$name_str = $name_arr[array_rand($name_arr)];
 	// format lucky number between 0~9
 	$number_str = rand(0,9);
@@ -48,7 +52,9 @@ try {
           ->options([
                 'query' => [
                   'RegionId' => "cn-hangzhou",
+                  // 以下短信模板请自己申请
                   'PhoneNumbers' => "17627828449",
+                  // 签名也需要申请
                   'SignName' => "余大能耐",
                   'TemplateCode' => "SMS_176539584",
                   'TemplateParam' => json_encode($sms_content),
@@ -62,7 +68,12 @@ try {
     echo $e->getErrorMessage() . PHP_EOL;
 }
 
-
+/**
+ * 获取天气信息
+ * @return string
+ * @author yuzhihao <yu@vagh.cn>
+ * @since 2020/2/24
+ */
 function getWeather()
 {
 	$location = "Beijing";
@@ -86,6 +97,12 @@ function getWeather()
 	return $str;
 }
 
+/**
+ * 获取当前温度信息
+ * @return string
+ * @author yuzhihao <yu@vagh.cn>
+ * @since 2020/2/24
+ */
 function getAirNow()
 {
 	$location = "Beijing";
@@ -134,12 +151,25 @@ function getAirNow()
 	return $mess;
 }
 
+/**
+ * 计算在一起多长时间
+ * @return false|float|int
+ * @author yuzhihao <yu@vagh.cn>
+ * @since 2020/2/24
+ */
 function getDays()
 {
+    // 在一起的时间
 	$d1 = strtotime("2019-10-30 00:00:00");
 	return ceil((time()-$d1)/60/60/24) - 1;
 }
 
+/**
+ * 获取自己的昵称
+ * @return string
+ * @author yuzhihao <yu@vagh.cn>
+ * @since 2020/2/24
+ */
 function getFromName()
 {
 	$day = getDays();
